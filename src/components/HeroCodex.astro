@@ -1,0 +1,37 @@
+<a class="hero-codex-stage" href="/biblioteca/" aria-label="Abrir a biblioteca — Nossa Bíblia Livre">
+  <span class="hero-codex-shadow" aria-hidden="true"></span>
+  <span class="hero-codex-object">
+    <span class="hero-codex-layer layer-3" aria-hidden="true"></span>
+    <span class="hero-codex-layer layer-2" aria-hidden="true"></span>
+    <span class="hero-codex-layer layer-1" aria-hidden="true"></span>
+    <img src="/img/3d.png" alt="Encadernação Nossa Bíblia Livre" width="1196" height="1315" fetchpriority="high" />
+    <span class="hero-codex-light" aria-hidden="true"></span>
+  </span>
+</a>
+<script>
+  document.querySelectorAll<HTMLElement>('.hero-codex-stage').forEach(stage => {
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const fine = matchMedia('(hover: hover) and (pointer: fine)');
+    let frame = 0;
+    function reset() {
+      cancelAnimationFrame(frame);
+      for (const property of ['--rx', '--ry', '--mx', '--my']) stage.style.removeProperty(property);
+    }
+    stage.addEventListener('pointermove', event => {
+      if (motion.matches || !fine.matches || event.pointerType === 'touch') return;
+      const bounds = stage.getBoundingClientRect();
+      const x = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1));
+      const y = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1));
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        stage.style.setProperty('--ry', `${x * 18}deg`);
+        stage.style.setProperty('--rx', `${-y * 9}deg`);
+        stage.style.setProperty('--mx', `${50 + x * 40}%`);
+        stage.style.setProperty('--my', `${50 + y * 40}%`);
+      });
+    });
+    stage.addEventListener('pointerleave', reset);
+    stage.addEventListener('blur', reset);
+    motion.addEventListener('change', reset);
+  });
+</script>

@@ -1,0 +1,166 @@
+{
+  "id": "genesis-001",
+  "book": "genesis",
+  "chapter": 1,
+  "title": "Gênesis 1 — amostra fornecida",
+  "status": "published",
+  "contentKind": "sample",
+  "sourceLabel": "Amostra de tradução de Osvaldo Luiz Ribeiro fornecida em ref-text.txt pelo responsável pelo protótipo.",
+  "verses": [
+    {
+      "number": 1,
+      "text": "Na encabeçadura do cria ‘Elohim.\nOs céus.\nE a terra.",
+      "style": "poetry"
+    },
+    {
+      "number": 2,
+      "text": "E a terra.\nEstá ela desolamento.\nE desmantelamento.\nE treva.\nSobre as faces de fossa.\nE a ventania de ‘Elohim.\nSobre-agitadora.\nSobre as faces das águas.",
+      "style": "poetry"
+    },
+    {
+      "number": 3,
+      "text": "E diz ‘Elohim.\nEstá.\nLume.\nE está.\nLume.",
+      "style": "poetry"
+    },
+    {
+      "number": 4,
+      "text": "E vê ‘Elohim.\nO lume.\nQue bom.\nE faz separar ‘Elohim.\nEntre o lume.\nE entre a treva.",
+      "style": "poetry"
+    },
+    {
+      "number": 5,
+      "text": "E grita ‘Elohim.\nPara o lume.\nDia.\nE para a treva.\nGrita ele.\nNoite.\nE está.\nTarde.\nE está.\nManhã.\nDia um.",
+      "style": "poetry"
+    },
+    {
+      "number": 6,
+      "text": "E diz ‘Elohim.\nEstá chapeado,\nNo meio dos aquosos.\nE está ele fazedor de separar.\nEntre aquosos.\nPara aquosos.",
+      "style": "poetry"
+    },
+    {
+      "number": 7,
+      "text": "E faz ‘Elohim o chapeado.\nE faz ele separar.\nEntre os aquosos.\nQue desde debaixo.\nPara o chapeado.\nE entre os aquosos.\nQue desde sobre.\nPara o chapeado.\nE está assim.",
+      "style": "poetry"
+    },
+    {
+      "number": 8,
+      "text": "E grita ‘Elohim.\nPara o chapeado.\nCéus.\nE está tarde.\nE está manhã.\nDia segundo.",
+      "style": "poetry"
+    },
+    {
+      "number": 9,
+      "text": "E diz ‘Elohim.\nConstringidos estão os aquosos.\nDesde debaixo dos céus\nA lugar um.\nE vista está.\nA secadura.\nE está assim.",
+      "style": "poetry"
+    },
+    {
+      "number": 10,
+      "text": "E grita ‘Elohim.\nPara a secadura.\nTerra.\nE para o constringidouro.)) das águas.\nGrita ele.\nMares.\nE vê ‘Elohim.\nQue.\nBom.",
+      "style": "poetry"
+    },
+    {
+      "number": 11,
+      "text": "E diz ‘Elohim.\nFaça desabrolhar a terra desabrolho.\nErva fazedora de semear semente.\nÁrvore de fruto.\nFazedor de fruto.\nPara o tipo dela.\nQue está a semente dela nele sobre a terra.\nE está assim.",
+      "style": "poetry"
+    },
+    {
+      "number": 12,
+      "text": "E faz brotar a terra verdura.\nErva semeadora de semente.\nPara o tipo dela.\nE árvore fazedora de fruto.\nQue nele está a semente dela.\nPara o tipo dela.\nE vê ‘Elohim.\nQue está bom.",
+      "style": "poetry"
+    },
+    {
+      "number": 13,
+      "text": "E está tarde.\nE está manhã.\nDia terceiro.",
+      "style": "poetry"
+    },
+    {
+      "number": 14,
+      "text": "E diz ‘Elohim.\nEsteja luzeiros no chapeado dos céus.\nPara fazer separar.\nEntre o dia e entre a noite.\nE estejam eles para sinais.\nE para períodos.\nE para dias e mudanças.",
+      "style": "poetry"
+    },
+    {
+      "number": 15,
+      "text": "E estão eles.\nPara luzeiros.\nNo chapeado dos céus.\nPara iluminar.\nSobre a terra.\nE está.\nAssim.",
+      "style": "poetry"
+    },
+    {
+      "number": 16,
+      "text": "E faz ‘Elohim os dois luzeiros grandes.\nO luzeiro grande.\nPara a regramentação do dia.\nE o luzeiro pequeno.\nPara a governança da noite.\nE as estrelas.",
+      "style": "poetry"
+    },
+    {
+      "number": 17,
+      "text": "E dá eles ’Elohim no chapeado dos céus.\nPara iluminar sobre a terra.",
+      "style": "poetry"
+    },
+    {
+      "number": 18,
+      "text": "E para regrar.\nNo dia.\nE na noite.\nE para fazer separar.\nEntre o lume.\nE entre o trevor.\nE vê ‘Elohim.\nQue bom.",
+      "style": "poetry"
+    },
+    {
+      "number": 19,
+      "text": "E está tarde.\nE está manhã.\nDia quarto.",
+      "style": "poetry"
+    },
+    {
+      "number": 20,
+      "text": "E diz ‘Elohim.\nFervilhem as águas.\nFervilhante de garganta viva.\nE volante.\nAvoe ele sobre a terra.\nSobre as faces do chapeado dos céus.",
+      "style": "poetry"
+    },
+    {
+      "number": 21,
+      "text": "E cria ‘Elohim os tanninim grandes.\nE o total da garganta da vida rastejadora.\nQue fervilham as águas.\nPara o tipo deles.\nE total de volante de asa.\nPara o tipo dela.\nE vê ‘Elohim que está bom.",
+      "style": "poetry"
+    },
+    {
+      "number": 22,
+      "text": "E abençoa.\nEles.\n‘Elohim.\nPara dizer.\nFrutificai vós.\nE multiplicai vós.\nE enchei vós os aquosos.\nNos mares.\nE o volante.\nMultiplica ele.\nNa terra.",
+      "style": "poetry"
+    },
+    {
+      "number": 23,
+      "text": "E está tarde.\nE está manhã.\nDia quinto.",
+      "style": "poetry"
+    },
+    {
+      "number": 24,
+      "text": "E diz ‘Elohim.\nFaça sair a terra garganta viva.\nPara o tipo dela.\nAlimária e rastejante.\nE vida de terra.\nPara o tipo dela.\nE está assim.",
+      "style": "poetry"
+    },
+    {
+      "number": 25,
+      "text": "E faz ‘Elohim a vida da terra.\nPara o tipo dela.\nE a alimária.\nPara o tipo dela.\nE o total do rastejante da ‘adamah.\nPara o tipo dele.\nE vê ‘Elohim que está bom.",
+      "style": "poetry"
+    },
+    {
+      "number": 26,
+      "text": "E diz ‘Elohim.\nFazemos nós homem.\nNa imagem de nós.\nConforme a forma de nós.\nE sujeitem eles.\nNo peixe do mar.\nE no volante dos céus.\nE na alimária.\nE no total da terra.\nE no total do rastejante rastejador sobre a terra.",
+      "style": "poetry"
+    },
+    {
+      "number": 27,
+      "text": "E cria ‘Elohim o homem.\nNa imagem dele.\nNa imagem de ‘Elohim cria ele ele.\nMacho e fêmea ele cria eles.",
+      "style": "poetry"
+    },
+    {
+      "number": 28,
+      "text": "E abençoa.\nEles.\n‘Elohim.\nE diz ele.\nPara eles ’Elohim.\nFrutificai vós.\nE multiplicai vós.\nE enchei vós a terra.\nE subjugai vós ela.\nE sujeitai vós.\nNo peixe do mar.\nE no volante dos céus.\nE no total da vida rastejadora sobre a terra.",
+      "style": "poetry"
+    },
+    {
+      "number": 29,
+      "text": "E diz ‘Elohim.\nEis.\nDou eu.\nPara vós.\nTotal de erva semeadora de semente.\nQue está sobre as faces do total da terra.\nE o total da árvore.\nQue nela está fruto de árvore.\nSemeador de semente.\nPara vós está.\nPara comida.",
+      "style": "poetry"
+    },
+    {
+      "number": 30,
+      "text": "E para o total da vida da terra.\nE para o total do volante dos céus.\nE para total de rastejador.\nSobre a terra.\nQue nele.\nGarganta viva.\nTotal de verdura de erva.\nPara comida.\nE está assim.",
+      "style": "poetry"
+    },
+    {
+      "number": 31,
+      "text": "E vê ‘Elohim.\nTotal.\nQue faz ele.\nE eis.\nBom.\nMuito.\nE está tarde.\nE está manhã.\nO dia do sexto.",
+      "style": "poetry"
+    }
+  ]
+}

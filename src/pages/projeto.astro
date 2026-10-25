@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectManifesto from '../components/ProjectManifesto.astro';
+import '../styles/presentation.css';
+---
+<Layout title="Sobre o projeto">
+  <section class="presentation-hero">
+    <div><h1>Sobre o projeto</h1><ProjectManifesto /><div class="actions"><a class="button" href="/biblioteca/">Explorar biblioteca</a><a class="button secondary" href="https://nossabiblialivre.com/">Apresentação oficial ↗</a></div></div>
+    <img class="presentation-logo" src="/img/logo.png" alt="Nossa Bíblia Livre" width="1536" height="1024" />
+  </section>
+  <p class="caption">Texto institucional reproduzido da contracapa fornecida. Esta interface é um protótipo independente.</p>
+</Layout>

@@ -1,0 +1,58 @@
+[
+  {
+    "year": "1992",
+    "title": "Formação em Teologia",
+    "institution": "Seminário Teológico Batista do Sul do Brasil",
+    "text": "Bacharelado livre em Teologia.",
+    "image": "/img/bio-1.png",
+    "alt": "Edifício de seminário — imagem fornecida para ilustrar a trajetória"
+  },
+  {
+    "year": "1993–2023",
+    "title": "Três décadas de ensino",
+    "institution": "Docência em disciplinas bíblicas",
+    "text": "Um percurso dedicado ao ensino da Bíblia, conforme a apresentação do projeto.",
+    "image": "/img/bio-1.png",
+    "alt": "Edifício de seminário — imagem fornecida para ilustrar a trajetória"
+  },
+  {
+    "year": "2003",
+    "title": "Mestrado livre em Teologia",
+    "institution": "Seminário Teológico Batista do Rio de Janeiro",
+    "text": "Continuidade da formação teológica.",
+    "image": "/img/bio-1.png",
+    "alt": "Edifício de seminário — imagem fornecida para ilustrar a trajetória"
+  },
+  {
+    "year": "2008",
+    "title": "Doutorado e bacharelado",
+    "institution": "PUC-Rio · Faculdade Teológica Batista do Paraná",
+    "text": "Doutorado em Teologia, na área de Bíblia Hebraica, pela PUC-Rio; bacharelado em Teologia pela Faculdade Teológica Batista do Paraná.",
+    "image": "/img/bio-2.png",
+    "alt": "Edifício da PUC-Rio"
+  },
+  {
+    "year": "2016",
+    "title": "Pós-doutorado",
+    "institution": "Universidade Federal de Juiz de Fora",
+    "text": "Pós-doutorado em Ciências da Religião pela UFJF.",
+    "image": "/img/bio-3.png",
+    "alt": "Instituto de Ciências Humanas da UFJF"
+  },
+  {
+    "year": "2023",
+    "title": "Começa a tradução da Torá",
+    "institution": "Nossa Bíblia Livre",
+    "text": "Em 1º de julho, começa o trabalho de tradução da Torá.",
+    "image": "/img/logo.png",
+    "alt": "Nossa Bíblia Livre"
+  },
+  {
+    "year": "2025",
+    "title": "Da Torá aos Profetas",
+    "institution": "Nossa Bíblia Livre",
+    "text": "Em 5 de junho, conclusão da Torá e início da tradução dos Profetas.",
+    "image": "/img/logo.png",
+    "alt": "Nossa Bíblia Livre"
+  }
+]

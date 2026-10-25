@@ -1,0 +1,16 @@
+{
+  "slug": "lamentacoes",
+  "title": "Lamentações",
+  "collectionId": "writings",
+  "order": 6,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 5,
+  "publicationState": "planned",
+  "summary": "Tomo reservado no catálogo. Aguardando conteúdo.",
+  "preface": "Este tomo ainda não contém capítulos disponíveis no protótipo independente.",
+  "translatorAttribution": "",
+  "coverVariant": "green",
+  "enabled": true
+}

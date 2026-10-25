@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/home.css';
+import Continue from '../components/Continue';
+import HeroCodex from '../components/HeroCodex.astro';
+import BookCover from '../components/BookCover';
+import ProjectManifesto from '../components/ProjectManifesto.astro';
+import { compile } from '../lib/content';
+import { progress } from '../lib/catalog';
+const { catalog } = compile();
+---
+<Layout title="Nossa Bíblia Livre">
+  <section class="hero reference-hero">
+    <div class="hero-copy">
+      <h1>Nossa<br /><em>Bíblia Livre.</em></h1>
+      <p class="epigraph">“A tradução é tradução-da-letra” <cite>Antoine Berman</cite></p>
+      <ProjectManifesto />
+      <ul class="project-facts"><li>Torá traduzida entre 01/07/2023 e 05/06/2025.</li><li>Profetas em tradução desde 05/06/2025.</li></ul>
+      <div class="actions"><a class="button" href="/biblioteca/">Explorar biblioteca ↗</a><a class="button secondary" href="https://apoia.se/nossabiblialivre">Apoie a tradução</a><Continue books={catalog.books} client:load /></div>
+      <p class="caption"><a href="https://www.youtube.com/playlist?list=PLzeTEbuIqzqB_42RiyqfYmLhwJBwQhLTF">Ateliê de Tradução ao vivo, no YouTube ↗</a></p>
+    </div>
+    <div class="hero-art"><HeroCodex /></div>
+  </section>
+  <section class="section translator-panel" id="tradutor">
+    <div><h2>Osvaldo Luiz Ribeiro</h2><a class="text-link" href="/tradutor/">Biografia e trajetória ↗</a></div>
+    <div><p>Doutorado em Teologia (Bíblia Hebraica) pela PUC-Rio (2008). Pós-doutorado pela UFJF (2016).</p><a class="text-link" href="/projeto/">Sobre o projeto ↗</a></div>
+  </section>
+  <section class="section" id="ilustracoes" aria-labelledby="illustrations-title">
+    <div class="section-heading"><h2 id="illustrations-title">Ilustrações e coleções</h2><a class="text-link" href="/biblioteca/">Os livros da Bíblia ↗</a></div>
+    <p>Cada parte da Bíblia tem a sua encadernação: castanho para a Torá, bordô para os Profetas, verde para os Escritos e azul para o Novo Testamento em grego.</p>
+    <div class="collection-grid">{catalog.collections.map(collection => {
+      const books = catalog.books.filter(book => book.collectionId === collection.id);
+      return <a class={`collection-card ${collection.coverVariant}`} href={`/biblioteca/#${collection.id}`}>
+        <BookCover title={collection.title} variant={collection.coverVariant} kind="institutional" />
+        <h3>{collection.title}</h3><span class="collection-meta">{books.length} livros no catálogo <span>↗</span></span><small>{progress(books).published} capítulos disponíveis no protótipo</small>
+      </a>;
+    })}</div>
+    <p class="caption">Acervo de demonstração: Gênesis 1–3 contém a amostra de tradução fornecida. Salmos 1 é texto fictício de teste. Os demais livros estão apenas catalogados.</p>
+  </section>
+  <section class="section contact-section" id="contato">
+    <h2>Contato com o tradutor</h2>
+    <p class="caption" id="contact-disclosure">Formulários de demonstração: nenhuma mensagem será enviada ou armazenada. Para contato real, use o <a href="https://nossabiblialivre.com/#contatos">site oficial ↗</a>.</p>
+    <form class="contact-form" aria-label="Contato com o tradutor" aria-describedby="contact-disclosure">
+      <label>Nome<input required name="nome" autocomplete="name" /></label>
+      <label>E-mail<input required type="email" name="email" autocomplete="email" /></label>
+      <label class="full">Comentário ou mensagem<textarea required name="mensagem" rows="4"></textarea></label>
+      <button type="submit" disabled>Testar formulário de contato</button><p class="form-status" role="status"></p>
+    </form>
+    <details class="correction-form"><summary>Sugestão de correção</summary>
+      <form class="contact-form" aria-label="Sugestão de correção" aria-describedby="contact-disclosure">
+        <label>Livro<select required name="livro"><option value="">Selecione um livro</option>{catalog.books.map(book => <option value={book.slug}>{book.title}</option>)}</select></label>
+        <label>Capítulo<input required type="number" min="1" step="1" name="capitulo" /></label>
+        <label>Versículo<input required type="number" min="1" step="1" name="versiculo" /></label>
+        <label>Seu e-mail<input required type="email" name="email" autocomplete="email" /></label>
+        <label class="full">Sugestão<textarea required name="sugestao" rows="4"></textarea></label>
+        <button type="submit" disabled>Testar sugestão de correção</button><p class="form-status" role="status"></p>
+      </form>
+    </details>
+    <noscript>Ative JavaScript para testar os formulários. O contato real está disponível no site oficial.</noscript>
+  </section>
+</Layout>
+<script>
+  document.querySelectorAll<HTMLFormElement>('.contact-form').forEach(form => {
+    form.querySelector<HTMLButtonElement>('button[type=submit]')!.disabled = false;
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      form.querySelector<HTMLElement>('.form-status')!.textContent = 'Demonstração concluída. Nada foi enviado ou armazenado; o envio não está conectado a um serviço de e-mail.';
+    });
+  });
+</script>

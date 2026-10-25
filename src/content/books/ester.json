@@ -1,0 +1,16 @@
+{
+  "slug": "ester",
+  "title": "Ester",
+  "collectionId": "writings",
+  "order": 8,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 10,
+  "publicationState": "planned",
+  "summary": "Tomo reservado no catálogo. Aguardando conteúdo.",
+  "preface": "Este tomo ainda não contém capítulos disponíveis no protótipo independente.",
+  "translatorAttribution": "",
+  "coverVariant": "green",
+  "enabled": true
+}

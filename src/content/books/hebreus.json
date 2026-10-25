@@ -1,0 +1,16 @@
+{
+  "slug": "hebreus",
+  "title": "Hebreus",
+  "collectionId": "greek-nt",
+  "order": 19,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 13,
+  "publicationState": "planned",
+  "summary": "Tomo reservado no catálogo. Aguardando conteúdo.",
+  "preface": "Este tomo ainda não contém capítulos disponíveis no protótipo independente.",
+  "translatorAttribution": "",
+  "coverVariant": "blue",
+  "enabled": true
+}

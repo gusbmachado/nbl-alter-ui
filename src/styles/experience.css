@@ -1,0 +1,66 @@
+/* Shared refinements from the v2 reference: a compact room around the book. */
+:root {
+  --bg: #191c17;
+  --gold: #cfb177;
+  --line: #cfb17730;
+}
+body { background: radial-gradient(ellipse at 50% 12%, #41422d35, transparent 65%), var(--bg); }
+.site-header { padding-block: 18px; }
+.site-header nav { flex-wrap: wrap; gap: 12px 22px; }
+.page-intro { text-align: center; margin: auto; padding: 32px 0 22px; }
+.page-intro h1 { font: 36px/1.3 var(--title); margin-bottom: 12px; }
+.page-intro p:not(.eyebrow) { font-size: 18px; }
+.page-intro .eyebrow { margin-bottom: 10px; }
+.collection-jumps { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 24px; font: 12px/1.6 var(--title); color: var(--gold); margin: 12px 0 22px; }
+.library-toolbar { padding: 14px 0; align-items: center; }
+.available-filter { display: flex; align-items: center; gap: 8px; font: 12px/1.5 system-ui, sans-serif; }
+.library:not(.catalog-mode) { max-width: 1000px; margin: auto; }
+.shelf-section { padding: 22px 0; }
+.shelf-section .section-heading { justify-content: center; margin-bottom: 22px; }
+.shelf-section .section-heading>.caption { display: none; }
+.collection-cover-preview { width: 46px; flex-basis: 46px; }
+.collection-heading { gap: 14px; }
+.collection-heading h2 { font: 22px/1.4 var(--title); margin: 0; }
+.collection-heading .eyebrow { font-size: 8px; margin: 0 0 4px; }
+.library:not(.catalog-mode) .bookshelf { justify-content: center; gap: 5px; row-gap: 24px; border-bottom: 13px solid #352418; background: linear-gradient(transparent 65%, #0003); padding-bottom: 0; }
+.library:not(.catalog-mode) .spine { height: 190px; width: 54px; }
+.library:not(.catalog-mode) .book-item:nth-child(3n) .spine { height: 178px; }
+.library:not(.catalog-mode) .book-item:nth-child(4n) .spine { height: 198px; }
+.book-item:not(.available) .spine { filter: brightness(.6) saturate(.65); }
+.book-item:not(.available) .spine:hover { transform: none; filter: brightness(.85); }
+.available .spine { box-shadow: 0 0 18px #cfb17735, inset 0 0 0 1px #cfb17755; }
+.available .spine:hover, .available .spine:focus-visible { transform: translateY(-10px); }
+.quiet-layout .demo-banner { padding: 5px 16px; font-size: 9px; letter-spacing: .02em; }
+.quiet-layout .site-footer { padding: 20px 28px; }
+.quiet-layout .site-footer p, .quiet-layout .footer-brand { display: none; }
+.quiet-layout main { max-width: 1220px; }
+@media(max-width:700px) {
+  .site-header { align-items: start; }
+  .site-header nav { justify-content: end; gap: 10px; font-size: 10px; }
+  .site-header nav .nav-official { display: none; }
+  .library-toolbar { align-items: stretch; gap: 14px; }
+  .library:not(.catalog-mode) .bookshelf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 0; gap: 10px; background: none; box-shadow: none; }
+  .library:not(.catalog-mode) .book-item { padding: 12px 10px; gap: 10px; }
+  .library:not(.catalog-mode) .book-item:nth-child(n) .spine { width: 28px; height: 135px; flex-shrink: 0; }
+  .catalog-detail h3 { font-size: 17px; overflow-wrap: anywhere; }
+  .catalog-detail p { font-size: 11px; }
+  .catalog-detail .badge { font-size: 8px; }
+  .catalog-detail .text-link { font-size: 10px; }
+  .collection-heading h2 { font-size: 18px; }
+  .quiet-layout .site-footer { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+}
+@media(prefers-reduced-motion:reduce) { .available .spine:hover, .available .spine:focus-visible { transform: none; } }
+.bookshelf + .bookshelf { margin-top: 28px; }
+@media(min-width:701px) {
+  .hero { grid-template-columns: minmax(0, 1fr) 380px; gap: 56px; min-height: 580px; padding-block: 40px; }
+  .hero-art { min-height: 480px; }
+  .hero .orbit { opacity: .35; }
+}
+
+.brand-logo { width:90px; height:60px; object-fit:contain; flex-shrink:0; }
+@media(max-width:600px) { .brand-logo { width:60px; height:40px; } }
+
+.site-header{position:sticky;top:0;z-index:40;background:#171b17f5;backdrop-filter:blur(12px)}
+.site-header nav .nav-workshop{border:1px solid var(--gold);color:var(--gold);padding:8px 12px;border-radius:3px}
+.editor-return{margin-bottom:20px}
+@media(max-width:700px){.site-header{position:relative;padding:16px;flex-wrap:wrap}.site-header nav{justify-content:flex-start;width:100%;font-size:12px}.site-header .brand{font-size:16px}}

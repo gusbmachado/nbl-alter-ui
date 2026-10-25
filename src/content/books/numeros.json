@@ -1,0 +1,16 @@
+{
+  "slug": "numeros",
+  "title": "Números",
+  "collectionId": "torah",
+  "order": 4,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 36,
+  "publicationState": "planned",
+  "summary": "Tomo reservado no catálogo. Aguardando conteúdo.",
+  "preface": "Este tomo ainda não contém capítulos disponíveis no protótipo independente.",
+  "translatorAttribution": "",
+  "coverVariant": "brown",
+  "enabled": true
+}

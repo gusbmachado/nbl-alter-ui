@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BookCover from '../../components/BookCover';
+import { compile } from '../../lib/content';
+import { stateLabel } from '../../lib/catalog';
+export function getStaticPaths() {
+  const { catalog } = compile();
+  return catalog.books.map(book => ({ params: { slug: book.slug }, props: { book, collection: catalog.collections.find(c => c.id === book.collectionId)! } }));
+}
+const { book, collection } = Astro.props;
+const chapterNumbers = book.totalChapters !== null ? Array.from({ length: book.totalChapters }, (_, i) => i + 1) : book.chapters.map(c => c.chapter);
+---
+<Layout title={book.title}>
+  <a class="back-link" href={`/biblioteca/#${collection.id}`}>← Voltar à biblioteca</a>
+  <section class={`book-detail ${book.coverVariant || collection.coverVariant}`}>
+    <div class="detail-cover"><BookCover title={book.title} variant={book.coverVariant || collection.coverVariant} subtitle={collection.title} /></div>
+    <div><p class="eyebrow">{collection.title}</p><h1>{book.title}</h1>{book.originalTitle && <p lang="und">{book.originalTitle}</p>}<span class="badge">{stateLabel(book)}</span><p>{book.summary}</p><p>{book.preface}</p>{book.translatorAttribution && <p>{book.translatorAttribution}</p>}<p class="caption">{book.chapters.length} / {book.totalChapters ?? 'a definir'} capítulos disponíveis no protótipo</p>
+      {book.chapters.length > 0 ? <a class="button" href={`/ler/${book.slug}/`}>Abrir o tomo →</a> : <p class="notice">Este tomo ainda não possui capítulos disponíveis.</p>}
+    </div>
+  </section>
+  <section class="section"><p class="eyebrow">ÍNDICE DO TOMO</p><h2>Capítulos</h2><p class="caption">Os capítulos com link estão disponíveis. A identificação distingue amostras fornecidas de textos fictícios de teste.</p><div class="chapter-grid">{chapterNumbers.map(number => {
+    const chapter = book.chapters.find(c => c.chapter === number);
+    return chapter ? <a href={`/ler/${book.slug}/?capitulo=${number}`} aria-label={`Ler capítulo ${number}: ${chapter.title || ''}`}>{number}<small>{chapter.contentKind === "sample" ? "Amostra real" : "Texto fictício"}</small></a> : <span aria-label={`Capítulo ${number}, aguardando publicação`}>{number}<small>Aguardando</small></span>;
+  })}</div></section>
+</Layout>

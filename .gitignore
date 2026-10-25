@@ -1,0 +1,15 @@
+node_modules/
+.astro/
+dist/
+public/dados/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.env*
+
+__pycache__/
+*.pyc
+
+# Configurações locais de ferramentas, fora do produto
+.agents/
+.codex/

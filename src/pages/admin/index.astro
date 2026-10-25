@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Editor · Nossa Biblioteca Livre</title>
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <main id="cms-loading" style="max-width:640px;margin:12vh auto;padding:24px;font:16px/1.6 system-ui;color:#293426">
+      <h1>Editor da biblioteca</h1>
+      <p id="cms-status" role="status">Carregando o Sveltia CMS…</p>
+      <p>Para editar localmente, use Chrome ou Edge e escolha <strong>Work with Local Repository</strong>. Selecione a pasta raiz do projeto, que contém <code>src/</code> e <code>package.json</code>.</p>
+      <p>O acesso pelo GitHub requer configurar o repositório em <code>public/admin/config.yml</code>.</p>
+      <a href="/biblioteca/">← Voltar à biblioteca</a>
+    </main>
+    <script is:inline src="https://unpkg.com/@sveltia/cms@0.248.0/dist/sveltia-cms.js" type="module"
+      onload="document.getElementById('cms-loading').hidden = true"
+      onerror="document.getElementById('cms-status').textContent = 'Não foi possível baixar o editor. Confira a conexão e recarregue a página.'"></script>
+    <noscript>Ative JavaScript para usar o editor.</noscript>
+  </body>
+</html>

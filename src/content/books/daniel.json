@@ -1,0 +1,16 @@
+{
+  "slug": "daniel",
+  "title": "Daniel",
+  "collectionId": "writings",
+  "order": 9,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 12,
+  "publicationState": "planned",
+  "summary": "Tomo reservado no catálogo. Aguardando conteúdo.",
+  "preface": "Este tomo ainda não contém capítulos disponíveis no protótipo independente.",
+  "translatorAttribution": "",
+  "coverVariant": "green",
+  "enabled": true
+}

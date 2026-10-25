@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Reader from '../../components/Reader';
+import '../../styles/reader.css';
+import { compile } from '../../lib/content';
+export function getStaticPaths() {
+  const { catalog } = compile();
+  return catalog.books.filter(book => book.chapters.length).map(book => ({
+    params: { slug: book.slug }, props: {
+      book: { ...book, coverVariant: book.coverVariant || catalog.collections.find(c => c.id === book.collectionId)?.coverVariant },
+      categories: catalog.site.noteCategories,
+    },
+  }));
+}
+const { book, categories } = Astro.props;
+---
+<Layout title={`Ler ${book.title}`} wide quiet>
+  <Reader book={book} categories={categories} client:load />
+  <noscript><p class="notice">Ative JavaScript para abrir o leitor interativo. <a href={`/livros/${book.slug}/`}>Consulte o índice do tomo.</a></p></noscript>
+</Layout>

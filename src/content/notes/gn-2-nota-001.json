@@ -1,0 +1,13 @@
+{
+  "id": "gn-2-nota-001",
+  "book": "genesis",
+  "chapter": 2,
+  "status": "published",
+  "scope": "verse",
+  "verseStart": 1,
+  "verseEnd": 1,
+  "category": "other",
+  "title": "Nota 1",
+  "order": 1,
+  "body": "Estruturação do capítulo alterada para estrutura por senteça e não por parágrafos em 25/03/2024."
+}

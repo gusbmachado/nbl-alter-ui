@@ -1,0 +1,86 @@
+<div class="ambience" aria-label="Som ambiente">
+  <button id="audio-open" type="button" aria-haspopup="dialog">Áudio</button>
+  <dialog id="audio-panel" aria-labelledby="audio-title">
+  <header><h2 id="audio-title">Áudio</h2><button id="audio-close" aria-label="Fechar áudio">×</button></header>
+  <button id="ambience-toggle" type="button" aria-pressed="true">Som ambiente ligado</button>
+  <span id="ambience-status" role="status">Volume baixo · música e ambiente</span>
+  <label><input id="effects-toggle" type="checkbox" /> Sons de folhas e capa</label>
+  <label>Volume dos efeitos<input id="effects-volume" type="range" min="0" max="1" step=".05" value=".35" /></label>
+  </dialog>
+  <audio id="ambience-music" src="/audio/soundtrack.mp3" loop preload="none"></audio>
+  <audio id="ambience-scene" src="/audio/scene.wav" loop preload="none"></audio>
+</div>
+<script>
+  import { readStored, writeStored } from '../lib/storage';
+  const panel = document.querySelector<HTMLDialogElement>('#audio-panel')!;
+  let previous: HTMLElement | null = null;
+  function open() { previous = document.activeElement as HTMLElement; panel.showModal(); }
+  document.querySelector('#audio-open')!.addEventListener('click', open);
+  window.addEventListener('nbl-open-audio', () => requestAnimationFrame(open));
+  document.querySelector('#audio-close')!.addEventListener('click', () => panel.close());
+  panel.addEventListener('close', () => previous?.focus({ preventScroll: true }));
+  const effects = document.querySelector<HTMLInputElement>('#effects-toggle')!;
+  const volume = document.querySelector<HTMLInputElement>('#effects-volume')!;
+  const saved = readStored<{ sound?: boolean; volume?: number }>('preferences');
+  effects.checked = saved?.sound !== false;
+  volume.value = String(Number.isFinite(saved?.volume) ? Math.max(0, Math.min(1, saved!.volume!)) : .35);
+  function updateEffects() {
+    const patch = { sound: effects.checked, volume: Number(volume.value) };
+    writeStored('preferences', { ...readStored<Record<string, unknown>>('preferences'), ...patch });
+    window.dispatchEvent(new CustomEvent('nbl-effects', { detail: patch }));
+  }
+  effects.addEventListener('change', updateEffects);
+  volume.addEventListener('input', updateEffects);
+
+  const button = document.querySelector<HTMLButtonElement>('#ambience-toggle')!;
+  const status = document.querySelector<HTMLElement>('#ambience-status')!;
+  const tracks = [document.querySelector<HTMLAudioElement>('#ambience-music')!, document.querySelector<HTMLAudioElement>('#ambience-scene')!];
+  let enabled = true;
+  let attempt = 0;
+  try { enabled = localStorage.getItem('nbl-ambience') !== 'off'; } catch {}
+  tracks.forEach((track, i) => {
+    track.volume = i === 0 ? 0.12 : 0.06;
+    track.addEventListener('loadedmetadata', () => {
+      try { const time = Number(sessionStorage.getItem(`nbl-audio-${i}`)); if (Number.isFinite(time) && time > 0 && time < track.duration) track.currentTime = time; } catch {}
+    });
+  });
+  function render(message: string) {
+    button.textContent = enabled ? 'Desligar som ambiente' : 'Ligar som ambiente';
+    button.setAttribute('aria-pressed', String(enabled));
+    status.textContent = message;
+  }
+  async function play() {
+    if (!enabled || document.hidden) return;
+    const current = ++attempt;
+    const results = await Promise.allSettled(tracks.map(track => track.play()));
+    if (current !== attempt) { if (!enabled || document.hidden) tracks.forEach(track => track.pause()); return; }
+    if (!enabled || document.hidden) { tracks.forEach(track => track.pause()); return; }
+    render(results.every(result => result.status === 'fulfilled') ? 'Tocando · volume baixo' : 'Interaja com a página para iniciar o som');
+  }
+  button.addEventListener('click', () => {
+    enabled = !enabled;
+    ++attempt;
+    try { localStorage.setItem('nbl-ambience', enabled ? 'on' : 'off'); } catch {}
+    if (enabled) void play(); else { tracks.forEach(track => track.pause()); render('Som desligado'); }
+  });
+  for (const event of ['pointerup', 'keydown']) document.addEventListener(event, e => {
+    if (panel.contains(e.target as Node) || (e.target as HTMLElement).closest('#audio-open')) return;
+    if (enabled && tracks.some(track => track.paused)) void play();
+  });
+  function remember() { tracks.forEach((track, i) => { try { sessionStorage.setItem(`nbl-audio-${i}`, String(track.currentTime)); } catch {} }); }
+  window.addEventListener('pagehide', remember);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { ++attempt; remember(); tracks.forEach(track => track.pause()); } else void play();
+  });
+  render(enabled ? 'Volume baixo · música e ambiente' : 'Som desligado');
+  void play();
+</script>
+<style>
+  .ambience{position:fixed;right:16px;bottom:16px;z-index:40;font:12px system-ui,sans-serif}
+  .ambience>button{background:#20251eec;color:var(--gold);padding:8px 14px;box-shadow:0 4px 16px #0004}
+  :global(body:has(.codex-reader)) .ambience>button{display:none}
+  dialog{width:min(380px,calc(100% - 24px));padding:24px;background:#20251e;color:#ede5cf;border:1px solid var(--gold);border-radius:8px}
+  dialog::backdrop{background:#0007}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}h2{margin:0;font:24px var(--title)}
+  label{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px}span{display:block;margin:12px 0;color:var(--muted)}
+</style>

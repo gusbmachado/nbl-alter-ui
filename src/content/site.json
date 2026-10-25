@@ -1,0 +1,34 @@
+{
+  "title": "Nossa Biblioteca Livre",
+  "newsletterUrl": "",
+  "noteCategories": [
+    {
+      "id": "literal",
+      "label": "Literalidade"
+    },
+    {
+      "id": "philology",
+      "label": "Filologia"
+    },
+    {
+      "id": "textual_variant",
+      "label": "Variante textual"
+    },
+    {
+      "id": "wordplay",
+      "label": "Jogo de palavras"
+    },
+    {
+      "id": "context",
+      "label": "Contexto"
+    },
+    {
+      "id": "cross_reference",
+      "label": "Referência cruzada"
+    },
+    {
+      "id": "other",
+      "label": "Outras observações"
+    }
+  ]
+}

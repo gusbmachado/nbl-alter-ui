@@ -1,0 +1,40 @@
+.editor-intro { max-width: 780px; margin: 28px auto; text-align: center; }
+.editor-intro h1 { font-size: clamp(28px, 4vw, 42px); }
+.editor-intro p { color: var(--muted); }
+.editor-steps { list-style: none; display: flex; justify-content: center; gap: 24px; padding: 0; color: var(--gold); font: 12px/1.6 system-ui, sans-serif; }
+.editor-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+.editor-actions .button { padding: 10px 16px; }
+.editor-save { text-align: center; color: var(--gold); font: 12px/1.5 system-ui, sans-serif; margin: 18px 0; }
+.editor-message { max-width: 850px; margin: 20px auto; padding: 18px; border: 1px solid var(--gold); background: var(--panel); font: 14px/1.6 system-ui, sans-serif; }
+.editor-workspace { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 35px; max-width: 1000px; margin: 28px auto; align-items: start; }
+.editor-index { position: sticky; top: 20px; }
+.demo-editor label { display: grid; gap: 8px; font: 12px/1.6 system-ui, sans-serif; }
+.editor-index nav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin: 18px 0; }
+.editor-index button { padding: 9px 0; }
+.editor-index button[aria-pressed=true] { background: var(--gold); color: var(--bg); }
+.editor-index a { font: 12px/1.7 system-ui, sans-serif; color: var(--gold); }
+.editor-fields { min-width: 0; }
+.editor-fields h2 { font: 23px/1.4 var(--title); }
+.demo-editor textarea { width: 100%; resize: vertical; min-height: 110px; padding: 14px; background: #f2e8d3; color: #302619; border: 1px solid #9f8558; border-radius: 3px; font: 17px/1.7 Georgia, serif; }
+.demo-editor .editor-translation { font: 21px/1.8 var(--serif); }
+.editor-note { padding: 20px; border: 1px solid var(--line); margin-bottom: 14px; background: #ffffff04; }
+.editor-note label { margin-top: 12px; }
+.editor-notes-title, .editor-note-heading, .preview-bar { display: flex; gap: 16px; align-items: center; justify-content: space-between; }
+.editor-notes-title h3 { margin: 20px 0; font-size: 22px; }
+.editor-note-heading { font: 12px/1.5 system-ui, sans-serif; color: var(--gold); }
+.editor-note-heading button { font-size: 11px; padding: 5px 9px; }
+.editor-footnote { max-width: 850px; margin: 35px auto; text-align: center; font: 12px/1.7 system-ui, sans-serif; color: var(--muted); }
+.preview-bar { border-block: 1px solid var(--gold); padding: 14px; background: var(--panel); }
+.preview-bar h2 { margin: 0; font: 16px/1.5 var(--title); }
+@media(max-width:700px) {
+  .editor-workspace { grid-template-columns: 1fr; gap: 22px; }
+  .editor-index { position: static; }
+  .editor-index nav { grid-template-columns: repeat(8, 1fr); }
+  .editor-steps { gap: 12px; font-size: 10px; }
+  .editor-actions button { font-size: 11px; }
+  .editor-note { padding: 14px; }
+  .preview-bar { flex-wrap: wrap; }
+}
+.editor-note summary { cursor: pointer; color: var(--gold); font: 14px/1.6 system-ui, sans-serif; }
+.editor-note summary span { display: block; color: var(--muted); font: 15px/1.6 var(--serif); margin-top: 4px; overflow-wrap: anywhere; }
+.editor-note[open] summary { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 12px; }

@@ -1,0 +1,16 @@
+{
+  "slug": "salmos",
+  "title": "Salmos",
+  "collectionId": "writings",
+  "order": 1,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 150,
+  "publicationState": "in_progress",
+  "summary": "Texto fictício para testar paginação, retomada e 30 notas no mesmo verso.",
+  "preface": "Ensaio de interface, sem relação com uma tradução real do livro de Salmos.",
+  "translatorAttribution": "",
+  "coverVariant": "green",
+  "enabled": true
+}

@@ -1,0 +1,14 @@
+{
+  "id": "genesis-004",
+  "book": "genesis",
+  "chapter": 4,
+  "title": "Rascunho privado de ensaio",
+  "status": "draft",
+  "verses": [
+    {
+      "number": 1,
+      "text": "DRAFT_SENTINEL_NBL_DO_NOT_EXPORT",
+      "style": "prose"
+    }
+  ]
+}

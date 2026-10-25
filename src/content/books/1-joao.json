@@ -1,0 +1,16 @@
+{
+  "slug": "1-joao",
+  "title": "1 João",
+  "collectionId": "greek-nt",
+  "order": 23,
+  "canonTags": [
+    "protestante"
+  ],
+  "totalChapters": 5,
+  "publicationState": "planned",
+  "summary": "Tomo reservado no catálogo. Aguardando conteúdo.",
+  "preface": "Este tomo ainda não contém capítulos disponíveis no protótipo independente.",
+  "translatorAttribution": "",
+  "coverVariant": "blue",
+  "enabled": true
+}

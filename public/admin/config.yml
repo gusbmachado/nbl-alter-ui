@@ -1,0 +1,343 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms@0.248.0/schema/sveltia-cms.json
+backend:
+  name: github
+  repo: PREENCHER-PROPRIETARIO/PREENCHER-REPOSITORIO
+  branch: main
+media_folder: public/uploads
+public_folder: /uploads
+locale: pt
+collections:
+- name: collections
+  label: Coleções
+  folder: src/content/collections
+  create: true
+  format: json
+  extension: json
+  identifier_field: id
+  slug: '{{id}}'
+  fields:
+  - name: id
+    label: Identificador estável — não alterar após publicação
+    widget: string
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use letras minúsculas, números e hífens.
+  - name: title
+    label: Título
+    widget: string
+  - name: summary
+    label: Apresentação
+    widget: text
+  - name: order
+    label: Ordem
+    widget: number
+    value_type: int
+    min: 1
+  - &id001
+    name: coverVariant
+    label: Variação de encadernação
+    widget: select
+    options:
+    - brown
+    - wine
+    - green
+    - blue
+    default: brown
+  - name: enabled
+    label: Habilitada
+    widget: boolean
+    default: true
+  summary: '{{order}} · {{title}}'
+  sortable_fields:
+  - order
+  - title
+- name: books
+  label: Livros
+  folder: src/content/books
+  create: true
+  format: json
+  extension: json
+  identifier_field: slug
+  slug: '{{slug}}'
+  fields:
+  - name: slug
+    label: Identificador estável — não alterar após publicação
+    widget: string
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use letras minúsculas, números e hífens.
+  - name: title
+    label: Título
+    widget: string
+  - name: originalTitle
+    label: Título original
+    widget: string
+    required: false
+  - name: collectionId
+    label: Coleção
+    widget: relation
+    collection: collections
+    search_fields:
+    - title
+    - id
+    value_field: id
+    display_fields:
+    - title
+  - name: order
+    label: Ordem na coleção
+    widget: number
+    value_type: int
+    min: 1
+  - name: canonTags
+    label: Cânones
+    widget: list
+    default:
+    - protestante
+  - name: totalChapters
+    label: Total de capítulos
+    widget: number
+    value_type: int
+    min: 1
+    required: false
+    hint: Deixe vazio se desconhecido.
+  - name: publicationState
+    label: Estado editorial
+    widget: select
+    options:
+    - label: Planejado
+      value: planned
+    - label: Em andamento
+      value: in_progress
+    - label: Concluído e conferido
+      value: complete
+    default: planned
+  - name: summary
+    label: Sinopse
+    widget: text
+  - name: preface
+    label: Prefácio
+    widget: text
+    required: false
+  - name: translatorAttribution
+    label: Créditos autorizados
+    widget: text
+    required: false
+  - *id001
+  - name: enabled
+    label: Habilitado
+    widget: boolean
+    default: true
+  summary: '{{title}} · {{publicationState}}'
+  sortable_fields:
+  - order
+  - title
+  - collectionId
+- name: chapters
+  label: Capítulos
+  folder: src/content/chapters
+  create: true
+  format: json
+  extension: json
+  identifier_field: id
+  slug: '{{id}}'
+  fields:
+  - name: id
+    label: Identificador estável — não alterar após publicação
+    widget: string
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use letras minúsculas, números e hífens.
+  - &id002
+    name: book
+    label: Livro
+    widget: relation
+    collection: books
+    search_fields:
+    - title
+    - slug
+    value_field: slug
+    display_fields:
+    - title
+  - &id003
+    name: chapter
+    label: Número do capítulo
+    widget: number
+    value_type: int
+    min: 1
+  - &id004
+    name: status
+    label: Estado
+    widget: select
+    options:
+    - label: Rascunho
+      value: draft
+    - label: Publicado
+      value: published
+    default: draft
+  - name: title
+    label: Título
+    widget: string
+    required: false
+  - name: publishedAt
+    label: Data real de publicação
+    widget: datetime
+    required: false
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+  - name: verses
+    label: Versículos
+    widget: list
+    summary: Verso {{fields.number}}
+    collapsed: true
+    fields:
+    - name: number
+      label: Número estável do verso
+      widget: number
+      value_type: int
+      min: 1
+    - name: style
+      label: Forma
+      widget: select
+      options:
+      - label: Prosa
+        value: prose
+      - label: Poesia (preserva quebras)
+        value: poetry
+      default: prose
+    - name: text
+      label: Texto fictício ou autorizado
+      widget: text
+  - name: contentKind
+    label: Natureza do conteúdo
+    widget: select
+    options:
+    - label: Amostra real fornecida
+      value: sample
+    - label: Texto fictício de teste
+      value: demonstration
+    default: demonstration
+  - name: sourceLabel
+    label: Origem e atribuição da amostra
+    widget: text
+    required: false
+    hint: Obrigatório quando a natureza for amostra real fornecida.
+  summary: '{{book}} · capítulo {{chapter}} · {{status}}'
+  sortable_fields:
+  - book
+  - chapter
+  - status
+  view_filters:
+  - label: Publicados
+    field: status
+    pattern: published
+  - label: Rascunhos
+    field: status
+    pattern: draft
+- name: notes
+  label: Notas — edição individual
+  folder: src/content/notes
+  create: true
+  format: json
+  extension: json
+  identifier_field: id
+  slug: '{{id}}'
+  fields:
+  - name: id
+    label: Identificador estável — não alterar após publicação
+    widget: string
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use letras minúsculas, números e hífens.
+  - *id002
+  - *id003
+  - *id004
+  - name: scope
+    label: Abrangência
+    widget: select
+    options:
+    - label: Um verso
+      value: verse
+    - label: Faixa de versos
+      value: range
+    - label: Capítulo inteiro
+      value: chapter
+    default: verse
+  - name: verseStart
+    label: Verso inicial
+    widget: number
+    value_type: int
+    min: 1
+    required: false
+  - name: verseEnd
+    label: Verso final
+    widget: number
+    value_type: int
+    min: 1
+    required: false
+  - name: category
+    label: ID da categoria
+    widget: string
+    hint: Consulte as categorias em Configurações. A compilação valida este ID.
+  - name: title
+    label: Título
+    widget: string
+    required: false
+  - name: order
+    label: Ordem de exibição
+    widget: number
+    value_type: int
+    min: 1
+  - name: body
+    label: Comentário — Markdown seguro
+    widget: markdown
+  summary: '{{book}} {{chapter}}:{{verseStart}} · {{title}} · {{id}}'
+  sortable_fields:
+  - book
+  - chapter
+  - verseStart
+  - order
+  - category
+  view_filters:
+  - label: Gênesis — amostra real
+    field: book
+    pattern: genesis
+  - label: Salmos — 30 notas fictícias
+    field: book
+    pattern: salmos
+  - label: Publicadas
+    field: status
+    pattern: published
+  - label: Rascunhos
+    field: status
+    pattern: draft
+  description: Cada nota é um arquivo independente. Use busca, ordenação e filtros
+    para editar dezenas de notas do mesmo verso.
+- name: settings
+  label: Configurações
+  files:
+  - name: site
+    label: Site e categorias de notas
+    file: src/content/site.json
+    fields:
+    - name: title
+      label: Título
+      widget: string
+    - name: newsletterUrl
+      label: URL HTTPS do serviço de novidades
+      widget: string
+      required: false
+    - name: noteCategories
+      label: Categorias de notas
+      widget: list
+      collapsed: true
+      fields:
+      - name: id
+        label: Identificador estável — não alterar após publicação
+        widget: string
+        pattern:
+        - ^[a-z0-9]+(-[a-z0-9]+)*$
+        - Use letras minúsculas, números e hífens.
+      - name: label
+        label: Rótulo em português
+        widget: string

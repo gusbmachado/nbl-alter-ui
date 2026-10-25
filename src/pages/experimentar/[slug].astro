@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DemoEditor from '../../components/DemoEditor';
+import '../../styles/reader.css';
+import '../../styles/editor.css';
+import { compile } from '../../lib/content';
+export function getStaticPaths() {
+  const { catalog } = compile();
+  return catalog.books.filter(book => book.chapters.length).map(book => ({ params: { slug: book.slug }, props: {
+    book: { ...book, coverVariant: book.coverVariant || catalog.collections.find(c => c.id === book.collectionId)?.coverVariant },
+    categories: catalog.site.noteCategories,
+  } }));
+}
+const { book, categories } = Astro.props;
+---
+<Layout title={`Experimentar edição · ${book.title}`} wide>
+  <DemoEditor book={book} categories={categories} client:load />
+  <noscript>Ative JavaScript para experimentar a edição local.</noscript>
+</Layout>
