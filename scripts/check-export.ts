@@ -9,7 +9,7 @@ for (const variant of [undefined, ...catalog.collections.map(c => c.coverVariant
     assert(existsSync(`dist${coverAsset(variant, side)}`), `Encadernação não exportada: ${variant}/${side}`);
   }
 }
-for (const route of ['index.html', 'projeto/index.html', 'tradutor/index.html', 'img/logo.png', 'audio/soundtrack.mp3', 'audio/scene.wav', 'biblioteca/index.html', '404.html', 'admin/index.html', 'admin/config.yml',
+for (const route of ['index.html', 'projeto/index.html', 'tradutor/index.html', 'img/logo.png', 'audio/soundtrack.mp3', 'audio/scene.mp3', 'biblioteca/index.html', '404.html', 'admin/index.html', 'admin/config.yml',
   ...catalog.books.map(b => `livros/${b.slug}/index.html`),
   ...catalog.books.filter(b => b.chapters.length).flatMap(b => [`ler/${b.slug}/index.html`, `experimentar/${b.slug}/index.html`])]) {
   assert(existsSync(join('dist', route)), `Rota estática ausente: ${route}`);

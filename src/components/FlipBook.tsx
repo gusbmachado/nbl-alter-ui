@@ -20,7 +20,7 @@ export default forwardRef<FlipBookHandle, Props>(function FlipBook(props, ref) {
   const leaves = useRef<Leaf[]>([]);
   const callbacks = useRef(props); callbacks.current = props;
   const [geometry, setGeometry] = useState({ width: 0, height: 0, available: 0, viewportHeight: 0 });
-  const [fontRevision, setFontRevision] = useState(0);
+  const [fontsReady, setFontsReady] = useState(false);
   const [ready, setReady] = useState(false);
   useEffect(() => {
     const root = host.current!;
@@ -31,11 +31,13 @@ export default forwardRef<FlipBookHandle, Props>(function FlipBook(props, ref) {
       const height = Math.floor(Math.max(420, Math.min(width * 1.48, window.innerHeight - 180, 680)));
       setGeometry(old => old.width === width && old.height === height && old.available === available && old.viewportHeight === window.innerHeight ? old : { width, height, available, viewportHeight: window.innerHeight });
     }
-    resize(); const observer = new ResizeObserver(resize); observer.observe(root);
-    window.addEventListener('resize', resize);
+    let timer: ReturnType<typeof setTimeout>;
+    const scheduleResize = () => { clearTimeout(timer); timer = setTimeout(resize, 120); };
+    resize(); const observer = new ResizeObserver(scheduleResize); observer.observe(root);
+    window.addEventListener('resize', scheduleResize);
     let alive = true;
-    void document.fonts.ready.then(() => { if (alive) setFontRevision(n => n + 1); });
-    return () => { alive = false; observer.disconnect(); window.removeEventListener('resize', resize); };
+    void document.fonts.ready.then(() => { if (alive) setFontsReady(true); });
+    return () => { alive = false; clearTimeout(timer); observer.disconnect(); window.removeEventListener('resize', scheduleResize); };
   }, []);
   const go = (cursor: Cursor) => {
     const index = cursor.kind === 'front' ? 0 : cursor.kind === 'back' ? leaves.current.length - 1 : leafForPosition(leaves.current, cursor.chapter, cursor.verse, cursor.offset);
@@ -48,7 +50,7 @@ export default forwardRef<FlipBookHandle, Props>(function FlipBook(props, ref) {
     go,
   }));
   useEffect(() => {
-    if (!geometry.width || !props.chapters.length) return;
+    if (!fontsReady || !geometry.width || !props.chapters.length) return;
     let cancelled = false;
     let local: PageFlip | null = null;
     let clones: MutationObserver | null = null;
@@ -104,10 +106,15 @@ export default forwardRef<FlipBookHandle, Props>(function FlipBook(props, ref) {
         local.on('init', () => { if (!cancelled) { initialized = true; update(local!.getCurrentPageIndex()); setReady(true); } });
         // StPageFlip creates visual copies during corner previews. Keep them out of
         // focus navigation and the accessibility tree; only originals are interactive.
-        clones = new MutationObserver(() => {
-          mount.querySelectorAll<HTMLElement>('.folio-page').forEach(element => {
-            if (!elements.includes(element)) { element.inert = true; element.setAttribute('aria-hidden', 'true'); }
-          });
+        const originals = new Set(elements);
+        clones = new MutationObserver(records => {
+          for (const record of records) for (const node of record.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            const candidates = node.matches('.folio-page') ? [node] : node.querySelectorAll<HTMLElement>('.folio-page');
+            for (const element of candidates) if (!originals.has(element)) {
+              element.inert = true; element.setAttribute('aria-hidden', 'true');
+            }
+          }
         });
         clones.observe(mount, { childList: true, subtree: true });
         local.loadFromHTML(elements);
@@ -131,7 +138,7 @@ export default forwardRef<FlipBookHandle, Props>(function FlipBook(props, ref) {
       if (engine.current === local) engine.current = null;
       clones?.disconnect(); local?.destroy(); mount.remove();
     };
-  }, [props.chapters, props.size, props.font, props.showNotes, props.reduced, geometry, fontRevision]);
+  }, [props.chapters, props.size, props.font, props.showNotes, props.reduced, geometry, fontsReady]);
   return <div className="flipbook-shell" ref={host} data-ready={ready} aria-busy={!ready} style={{ minHeight: geometry.height || 440 }}
     tabIndex={0} aria-label="Flipbook. Arraste os cantos ou use as setas do teclado."
     onKeyDown={event => { if (event.target !== event.currentTarget) return; if (event.key === 'ArrowRight') { event.preventDefault(); props.reduced ? engine.current?.turnToNextPage() : engine.current?.flipNext(); } if (event.key === 'ArrowLeft') { event.preventDefault(); props.reduced ? engine.current?.turnToPrevPage() : engine.current?.flipPrev(); } }}>

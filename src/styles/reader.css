@@ -97,3 +97,7 @@
 .notes-list{min-height:0;flex:1 1 auto}
 @media(max-width:700px){.notes-dialog{inset:auto 0 0;max-height:70dvh}.notes-inner{height:auto;max-height:calc(70dvh - 32px);overflow:auto}.notes-list{min-height:100px}}
 @media(max-width:700px){.notes-dialog{inset:12dvh 12px auto;margin:0;width:calc(100vw - 24px);max-width:calc(100vw - 24px);max-height:76dvh}.notes-inner{max-height:calc(76dvh - 32px)}}
+
+/* Rotated preview leaves must not enlarge the document or trigger resize loops.
+   Text remains measured in full inside each leaf; only the animation overflow is clipped. */
+.flipbook-shell{overflow:clip;overflow-clip-margin:24px;isolation:isolate}
