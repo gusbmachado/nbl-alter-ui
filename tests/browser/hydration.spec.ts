@@ -1,5 +1,22 @@
 import { test, expect } from '@playwright/test';
 
+test('library roundtrips retain the book layout and page turning', async ({ page }) => {
+  await page.goto('/biblioteca/');
+  for (let visit = 0; visit < 3; visit++) {
+    await page.locator('.spine[href="/ler/genesis/"]').click();
+    await expect(page.locator('.flipbook-shell')).toHaveAttribute('data-ready', 'true');
+    await expect(page.locator('.flip-engine')).toHaveCSS('position', 'relative');
+    await expect(page.locator('.stf__block')).toHaveCSS('position', 'absolute');
+    const shell = (await page.locator('.flipbook-shell').boundingBox())!;
+    const cover = (await page.locator('.folio-front').boundingBox())!;
+    expect(cover.y).toBeGreaterThanOrEqual(shell.y - 1);
+    expect(cover.y + cover.height).toBeLessThanOrEqual(shell.y + shell.height + 1);
+    await page.getByRole('button', { name: 'Próxima →', exact: true }).click();
+    await expect(page.locator('.folio-text:visible').first()).toBeVisible();
+    await page.getByRole('link', { name: '← Biblioteca', exact: true }).click();
+  }
+});
+
 test('SSR and client hydration agree on direct and internal navigation', async ({ page }) => {
   const warnings: string[] = [];
   page.on('console', message => {

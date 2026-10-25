@@ -1,0 +1,38 @@
+/* Structural HTML styles from page-flip 2.0.7 (MIT).
+ * Its module injects these only once; ClientRouter can remove that injected
+ * style during a swap. Own them here so every reader visit has the same layout.
+ * Scope to the engine, excluding the pagination measurement probe.
+ */
+.flip-engine.stf__parent {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  touch-action: pan-y;
+}
+.flip-engine .stf__wrapper,
+.flip-engine .sft__wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+.flip-engine .stf__block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  perspective: 2000px;
+}
+.flip-engine .stf__item {
+  display: none;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.flip-engine .stf__outerShadow,
+.flip-engine .stf__innerShadow,
+.flip-engine .stf__hardShadow,
+.flip-engine .stf__hardInnerShadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
