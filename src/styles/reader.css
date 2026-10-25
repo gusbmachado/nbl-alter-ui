@@ -86,3 +86,14 @@
 @keyframes unroll-notes{from{opacity:0;clip-path:inset(0 0 95%)}to{opacity:1;clip-path:inset(0)}}
 @media(max-width:700px){.notes-dialog{margin:auto auto 22px;max-height:70dvh}.notes-inner{max-height:calc(70dvh - 32px)}}
 @media(prefers-reduced-motion:reduce){.notes-dialog{animation:none}}
+
+/* Explicit note labels remain compact and keep the measured heading height. */
+.folio-page .note-marker,.study-reading .note-marker{display:inline-flex;gap:4px;align-items:center;border-radius:12px;padding:3px 8px;font:11px/1.3 system-ui,sans-serif;white-space:nowrap}
+
+/* Keep filters inside the scroll, including at narrow/mobile viewport sizes. */
+.notes-dialog{position:fixed;height:auto;overflow:visible}
+.notes-inner{height:100%;max-height: calc(90dvh - 30px);overflow:hidden}
+.notes-header,.notes-search,.notes-inner>p{flex-shrink:0}
+.notes-list{min-height:0;flex:1 1 auto}
+@media(max-width:700px){.notes-dialog{inset:auto 0 0;max-height:70dvh}.notes-inner{height:auto;max-height:calc(70dvh - 32px);overflow:auto}.notes-list{min-height:100px}}
+@media(max-width:700px){.notes-dialog{inset:12dvh 12px auto;margin:0;width:calc(100vw - 24px);max-width:calc(100vw - 24px);max-height:76dvh}.notes-inner{max-height:calc(76dvh - 32px)}}

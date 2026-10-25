@@ -34,37 +34,142 @@ const { catalog } = compile();
         <BookCover title={collection.title} variant={collection.coverVariant} kind="institutional" />
         <h3>{collection.title}</h3><span class="collection-meta">{books.length} livros no catálogo <span>↗</span></span><small>{progress(books).published} capítulos disponíveis no protótipo</small>
       </a>;
-    })}</div>
+      })}
+    </div>
+    <p class="centro"><span id="andamento">2 de 66 tomos com capítulos neste protótipo.</span></p>
+    <div class="barra"><span id="barra" style="width: 4%;"></span></div>
     <p class="caption">Acervo de demonstração: Gênesis 1–3 contém a amostra de tradução fornecida. Salmos 1 é texto fictício de teste. Os demais livros estão apenas catalogados.</p>
   </section>
-  <section class="section contact-section" id="contato">
-    <h2>Contato com o tradutor</h2>
-    <p class="caption" id="contact-disclosure">Formulários de demonstração: nenhuma mensagem será enviada ou armazenada. Para contato real, use o <a href="https://nossabiblialivre.com/#contatos">site oficial ↗</a>.</p>
-    <form class="contact-form" aria-label="Contato com o tradutor" aria-describedby="contact-disclosure">
-      <label>Nome<input required name="nome" autocomplete="name" /></label>
-      <label>E-mail<input required type="email" name="email" autocomplete="email" /></label>
-      <label class="full">Comentário ou mensagem<textarea required name="mensagem" rows="4"></textarea></label>
-      <button type="submit" disabled>Testar formulário de contato</button><p class="form-status" role="status"></p>
-    </form>
-    <details class="correction-form"><summary>Sugestão de correção</summary>
-      <form class="contact-form" aria-label="Sugestão de correção" aria-describedby="contact-disclosure">
-        <label>Livro<select required name="livro"><option value="">Selecione um livro</option>{catalog.books.map(book => <option value={book.slug}>{book.title}</option>)}</select></label>
-        <label>Capítulo<input required type="number" min="1" step="1" name="capitulo" /></label>
-        <label>Versículo<input required type="number" min="1" step="1" name="versiculo" /></label>
-        <label>Seu e-mail<input required type="email" name="email" autocomplete="email" /></label>
-        <label class="full">Sugestão<textarea required name="sugestao" rows="4"></textarea></label>
-        <button type="submit" disabled>Testar sugestão de correção</button><p class="form-status" role="status"></p>
+<section class="sec2" id="contato">
+      <h2>Fale com o tradutor</h2>
+      <p class="sub">Deixe um comentário, uma crítica ou uma sugestão de correção sobre uma passagem já traduzida.</p>
+      <form class="form" id="f-contato" aria-label="Contato com o tradutor">
+        <label>Nome<input required="" name="nome" autocomplete="name"></label>
+        <label>E-mail<input required="" type="email" name="email" autocomplete="email"></label>
+        <label>Comentário ou mensagem<textarea name="msg"></textarea></label>
+        <button type="submit" disabled>Testar envio</button>
       </form>
-    </details>
-    <noscript>Ative JavaScript para testar os formulários. O contato real está disponível no site oficial.</noscript>
-  </section>
+      <details>
+        <summary>Sugerir correção de uma passagem</summary>
+        <form class="form" id="f-sug" aria-label="Sugestão de correção">
+          <label>Livro<select aria-label="Livro" id="f-livro" name="livro" required=""><option>Gênesis</option><option>Êxodo</option><option>Levítico</option><option>Números</option><option>Deuteronômio</option><option>Josué</option><option>Juízes</option><option>1 Samuel</option><option>2 Samuel</option><option>1 Reis</option><option>2 Reis</option><option>Isaías</option><option>Jeremias</option><option>Ezequiel</option><option>Oséias</option><option>Joel</option><option>Amós</option><option>Obadias</option><option>Jonas</option><option>Miquéias</option><option>Naum</option><option>Habacuque</option><option>Sofonias</option><option>Ageu</option><option>Zacarias</option><option>Malaquias</option><option>Salmos</option><option>Provérbios</option><option>Jó</option><option>Cântico dos Cânticos</option><option>Rute</option><option>Lamentações</option><option>Eclesiastes</option><option>Ester</option><option>Daniel</option><option>Esdras</option><option>Neemias</option><option>1 Crônicas</option><option>2 Crônicas</option><option>Mateus</option><option>Marcos</option><option>Lucas</option><option>João</option><option>Atos dos Apóstolos</option><option>Romanos</option><option>1 Coríntios</option><option>2 Coríntios</option><option>Gálatas</option><option>Efésios</option><option>Filipenses</option><option>Colossenses</option><option>1 Tessalonicenses</option><option>2 Tessalonicenses</option><option>1 Timóteo</option><option>2 Timóteo</option><option>Tito</option><option>Filemom</option><option>Hebreus</option><option>Tiago</option><option>1 Pedro</option><option>2 Pedro</option><option>1 João</option><option>2 João</option><option>3 João</option><option>Judas</option><option>Apocalipse</option></select></label>
+          <label>Capítulo<input required="" type="number" min="1" name="cap"></label>
+          <label>Versículo<input type="number" min="1" name="v"></label>
+          <label>Sugestão<textarea required="" name="sug"></textarea></label>
+          <label>Seu e-mail<input required="" type="email" name="email"></label>
+          <button type="submit" disabled>Testar envio</button>
+        </form>
+      </details>
+      <p class="caption">Demonstração: nenhuma mensagem será enviada ou armazenada. Para contato real, use o <a href="https://nossabiblialivre.com/">site oficial</a>.</p><p class="msg" id="msg-form" role="status"></p>
+    </section>
 </Layout>
+<style>
+  /* Seção de contato */
+  .sec2 {
+    border-top: 1px solid rgba(207,169,90,.28);
+    padding: 44px 0;
+  }
+
+  .sec2 > h2 {
+    font-size: 1.6rem;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  .sec2 > .sub {
+    text-align: center;
+    max-width: 60ch;
+    margin: -8px auto 26px;
+    color: rgba(234,217,176,.8);
+  }
+
+  .centro {
+    text-align: center;
+    margin-top: 26px;
+  }
+
+  .barra {
+    height: 8px;
+    background: rgba(0,0,0,.4);
+    border-radius: 99px;
+    overflow: hidden;
+    margin: 10px auto 0;
+    max-width: 420px;
+    border: 1px solid rgba(207,169,90,.4);
+  }
+
+  .barra span {
+    display: block;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  /* Formulários */
+  .form {
+    display: grid;
+    gap: 12px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .form label {
+    display: grid;
+    gap: 4px;
+    font-size: .9rem;
+  }
+
+  .form input,
+  .form select,
+  .form textarea {
+    font: inherit;
+    color: var(--roomink);
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(207,169,90,.45);
+    border-radius: 4px;
+    padding: 8px 10px;
+  }
+
+  .form textarea {
+    min-height: 110px;
+  }
+
+  .form button {
+    justify-self: start;
+    background: var(--gold);
+    color: #2a190c;
+    border: 0;
+    padding: 10px 26px;
+  }
+
+  /* Formulário expansível de sugestões */
+  details {
+    max-width: 560px;
+    margin: 24px auto 0;
+  }
+
+  details summary {
+    cursor: pointer;
+    color: var(--gold);
+    font-family: 'Cinzel',Georgia,serif;
+    margin-bottom: 14px;
+  }
+
+  /* Mensagens de retorno */
+  .msg {
+    text-align: center;
+    min-height: 1.6em;
+    margin: 14px 0 0;
+    color: var(--gold);
+  }
+</style>
 <script>
-  document.querySelectorAll<HTMLFormElement>('.contact-form').forEach(form => {
+  document.addEventListener('astro:page-load', () => {
+  document.querySelectorAll<HTMLFormElement>('#f-contato, #f-sug').forEach(form => {
     form.querySelector<HTMLButtonElement>('button[type=submit]')!.disabled = false;
     form.addEventListener('submit', event => {
       event.preventDefault();
-      form.querySelector<HTMLElement>('.form-status')!.textContent = 'Demonstração concluída. Nada foi enviado ou armazenado; o envio não está conectado a um serviço de e-mail.';
+      document.querySelector<HTMLElement>('#msg-form')!.textContent = 'Demonstração concluída. Nada foi enviado ou armazenado; o envio não está conectado a um serviço de e-mail.';
     });
+  });
   });
 </script>

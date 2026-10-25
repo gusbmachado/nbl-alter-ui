@@ -51,7 +51,9 @@ Esta oficina testa uma experiência de edição. A edição remota e a publicaç
 - Acesse **Projeto** e **Tradutor** no menu principal para conhecer as páginas de apresentação. Na biografia, clique nos marcos da trajetória para expandir os detalhes; também é possível usar Tab e Enter.
 - Use o menu principal para Projeto, Tradutor, Biblioteca, Ilustrações, Contato e Oficina de edição. A oficina mantém esse menu e oferece **Voltar à passagem original**, preservando livro, capítulo e versículo.
 - Música e ambiente são habilitados inicialmente, em loop e com volumes baixos (12% e 6%). Alguns navegadores exigem uma primeira interação para liberar o som. O menu **Áudio** (em **Ajustes de leitura** dentro do tomo) permite desligar as duas faixas e memoriza a preferência neste navegador.
-- Ao trocar de página, o áudio tenta retomar a posição anterior. A navegação carrega outro documento, portanto pode haver uma breve interrupção. Ao ocultar a aba, o som pausa.
+- A música e o ambiente continuam em loop durante a navegação interna e ao alternar abas. O site não os pausa ao ocultar a aba. Recarregar a página, sair do site ou abrir o Sveltia CMS carrega outro documento e pode interromper o áudio; o navegador/sistema também pode suspender mídia em segundo plano.
 
 - Os efeitos de abertura do tomo e virada de páginas começam ligados, com volume de 35%. Desative **Sons de folhas e capa** no menu de áudio se desejar; uma preferência anterior de silêncio é respeitada.
 - Os formulários de contato e correção são demonstrações: validam os campos, mas não enviam nem armazenam mensagens. O contato real permanece no site oficial.
+
+- Os marcadores dos versos mostram texto e quantidade (por exemplo, **✦ 3 notas**), tanto no livro quanto no modo Estudo.

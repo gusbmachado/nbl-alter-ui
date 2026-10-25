@@ -9,6 +9,7 @@
   </span>
 </a>
 <script>
+  document.addEventListener('astro:page-load', () => {
   document.querySelectorAll<HTMLElement>('.hero-codex-stage').forEach(stage => {
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const fine = matchMedia('(hover: hover) and (pointer: fine)');
@@ -33,5 +34,7 @@
     stage.addEventListener('pointerleave', reset);
     stage.addEventListener('blur', reset);
     motion.addEventListener('change', reset);
+    document.addEventListener('astro:before-swap', () => { reset(); motion.removeEventListener('change', reset); }, { once: true });
+  });
   });
 </script>

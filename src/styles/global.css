@@ -171,7 +171,6 @@ em {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1280px;
     margin: auto;
     padding: 25px 44px;
     border-bottom: 1px solid var(--line);
@@ -266,34 +265,47 @@ em {
 }
 
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    background: var(--gold);
-    color: #1e241b;
-    padding: 15px 23px;
-    border: 1px solid var(--gold);
-    border-radius: 2px;
-    font: 12px/1.5 system-ui, sans-serif;
-    text-decoration: none
-}
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-.button:hover {
-    background: #dcc391;
-    color: #171b17
+  padding: 12px 30px;
+
+  background: var(--gold, #cfa95a);
+  color: #2a190c;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  font-size: 1rem;
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .button.secondary {
-    background: transparent;
-    color: var(--gold);
-    font-size: 11px;
-    padding: 10px 16px
+  background: transparent;
+  color: var(--gold, #cfa95a);
+  border: 1px solid var(--gold, #cfa95a);
+}
+
+.button:hover {
+  background: #e0bd75;
+  color: #2a190c;
+}
+
+.button.secondary:hover {
+  background: rgba(207, 169, 90, 0.12);
+  color: var(--gold, #cfa95a);
 }
 
 .caption {
     color: var(--muted);
-    font: 12px/1.7 system-ui, sans-serif
+    font: 12px/1.7 system-ui, sans-serif;
+    margin-top: 8px
 }
 
 .hero .caption {
@@ -560,7 +572,6 @@ em {
 
 .site-footer {
     border-top: 1px solid var(--line);
-    max-width: 1280px;
     margin: auto;
     padding: 35px 44px;
     display: flex;

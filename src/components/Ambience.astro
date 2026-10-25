@@ -1,4 +1,4 @@
-<div class="ambience" aria-label="Som ambiente">
+<div class="ambience" aria-label="Som ambiente" transition:persist="nbl-ambience">
   <button id="audio-open" type="button" aria-haspopup="dialog">Áudio</button>
   <dialog id="audio-panel" aria-labelledby="audio-title">
   <header><h2 id="audio-title">Áudio</h2><button id="audio-close" aria-label="Fechar áudio">×</button></header>
@@ -50,11 +50,11 @@
     status.textContent = message;
   }
   async function play() {
-    if (!enabled || document.hidden) return;
+    if (!enabled) return;
     const current = ++attempt;
     const results = await Promise.allSettled(tracks.map(track => track.play()));
-    if (current !== attempt) { if (!enabled || document.hidden) tracks.forEach(track => track.pause()); return; }
-    if (!enabled || document.hidden) { tracks.forEach(track => track.pause()); return; }
+    if (current !== attempt) { if (!enabled) tracks.forEach(track => track.pause()); return; }
+    if (!enabled) { tracks.forEach(track => track.pause()); return; }
     render(results.every(result => result.status === 'fulfilled') ? 'Tocando · volume baixo' : 'Interaja com a página para iniciar o som');
   }
   button.addEventListener('click', () => {
@@ -69,8 +69,12 @@
   });
   function remember() { tracks.forEach((track, i) => { try { sessionStorage.setItem(`nbl-audio-${i}`, String(track.currentTime)); } catch {} }); }
   window.addEventListener('pagehide', remember);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { ++attempt; remember(); tracks.forEach(track => track.pause()); } else void play();
+  // Keep the same media elements playing during navigation and tab changes.
+  document.addEventListener('astro:before-swap', () => { if (panel.open) panel.close(); });
+  document.addEventListener('astro:page-load', () => {
+    const current = readStored<{ sound?: boolean; volume?: number }>('preferences');
+    effects.checked = current?.sound !== false;
+    if (Number.isFinite(current?.volume)) volume.value = String(Math.max(0, Math.min(1, current!.volume!)));
   });
   render(enabled ? 'Volume baixo · música e ambiente' : 'Som desligado');
   void play();

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/experience.css';
+import { ClientRouter } from 'astro:transitions';
 import Ambience from '../components/Ambience.astro';
 import site from '../content/site.json';
 interface Props { title?: string; wide?: boolean; quiet?: boolean }
@@ -11,6 +12,7 @@ const path = Astro.url.pathname;
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <ClientRouter fallback="swap" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Uma experiência independente de leitura e estudo. Biblioteca experimental com amostra fornecida de Gênesis e textos fictícios de teste." />
     <meta name="theme-color" content="#171b17" />
@@ -27,14 +29,15 @@ const path = Astro.url.pathname;
         <a aria-current={path.startsWith('/projeto') ? 'page' : undefined} href="/projeto/">Projeto</a>
         <a aria-current={path.startsWith('/tradutor') ? 'page' : undefined} href="/tradutor/">Tradutor</a>
         <a aria-current={path.startsWith('/biblioteca') ? 'page' : undefined} href="/biblioteca/">Biblioteca</a>
-        <a href="/#ilustracoes">Ilustrações</a>
-        <a href="/#contato">Contato</a>
         <a class="nav-workshop" aria-current={path.startsWith('/experimentar') ? 'page' : undefined} href="/experimentar/genesis/">Oficina de edição</a>
-        <a class="nav-official" href="https://nossabiblialivre.com/">Projeto oficial ↗</a>
       </nav>
     </header>}
     <Ambience />
     <main id="conteudo" class:list={['container', { wide }]}><slot /></main>
-    <footer class="site-footer"><span class="footer-brand">{site.title}</span><p>Uma interface experimental, independente e não oficial.<br />Gênesis: amostra fornecida da tradução de Osvaldo Luiz Ribeiro.</p><a href="/experimentar/genesis/">Oficina de edição</a><a href="/admin/">Sveltia CMS</a><a href="https://nossabiblialivre.com/">Visitar Nossa Bíblia Livre ↗</a></footer>
+    <footer class="site-footer">
+      <span class="footer-brand">{site.title}</span>
+      <p>Uma interface experimental, independente e não oficial.<br />Gênesis: amostra fornecida da tradução de Osvaldo Luiz Ribeiro.</p>
+      <a href="/experimentar/genesis/">Oficina de edição</a><a href="/admin/" data-astro-reload>Sveltia CMS</a><a href="https://nossabiblialivre.com/">Visitar Nossa Bíblia Livre ↗</a>
+    </footer>
   </body>
 </html>

@@ -1,6 +1,6 @@
 > Registro histórico anterior à oficina de edição. Para orientações atuais, consulte o README da raiz e ARQUITETURA.md. Caminhos e estados aqui registrados podem refletir etapas anteriores.
 
-# Nossa Biblioteca Livre
+# Nossa Bíblia Livre
 
 Prova de conceito independente baseada no pacote `codex-nbl/`. Inclui a amostra real de Gênesis 1–3 fornecida pelo responsável em `ref-text.txt`, atribuída a Osvaldo Luiz Ribeiro, e um texto fictício de Salmos para testes. A interface não é oficial e seus números não representam o andamento do projeto original.
 

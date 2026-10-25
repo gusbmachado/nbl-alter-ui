@@ -13,7 +13,7 @@ export function fillSegments(target: HTMLElement, segments: Page, chapter: Publi
     const notes = chapter.notes.filter(n => n.scope !== 'chapter' && n.verseStart! <= segment.verse && n.verseEnd! >= segment.verse);
     if (showNotes && notes.length) {
       const marker = document.createElement('button'); marker.type = 'button'; marker.className = 'note-marker';
-      marker.textContent = '✦'; marker.title = `${notes.length} notas do verso ${segment.verse}`; marker.setAttribute('aria-label', `${notes.length} notas do verso ${segment.verse}`);
+      marker.textContent = `✦ ${notes.length} ${notes.length === 1 ? 'nota' : 'notas'}`; marker.title = `${notes.length} notas do verso ${segment.verse}`; marker.setAttribute('aria-label', `${notes.length} notas do verso ${segment.verse}`);
       marker.dataset.noteVerse = String(segment.verse); marker.dataset.noteChapter = String(chapter.chapter);
       heading.append(marker);
     }

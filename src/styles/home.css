@@ -47,7 +47,7 @@
 .epigraph{color:var(--gold);font-style:italic}.epigraph cite{font-size:15px;margin-left:8px}
 .institutional-manifesto{max-width:55ch;line-height:1.8}
 .project-facts{padding-left:20px;font-size:16px}
-.reference-hero .hero-codex-stage{animation:codex-float 8s ease-in-out infinite}
+.reference-hero .hero-codex-object{animation:codex-float 8s ease-in-out infinite}
 @keyframes codex-float{0%,100%{translate:0 0}50%{translate:0 -10px}}
 .contact-form{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:24px auto}
 .contact-form label{display:grid;gap:6px;font:14px/1.6 system-ui,sans-serif}.contact-form .full{grid-column:1/-1}
@@ -58,4 +58,4 @@
 #ilustracoes,#contato{scroll-margin-top:120px}
 @media(max-width:860px){.reference-hero{grid-template-columns:1fr;gap:30px}.reference-hero .hero-art{order:-1;min-height:350px}.reference-hero .hero-codex-stage{width:min(280px,65vw)}}
 @media(max-width:600px){.contact-form{grid-template-columns:1fr}.contact-form .full{grid-column:auto}}
-@media(prefers-reduced-motion:reduce){.reference-hero .hero-codex-stage{animation:none}}
+@media(prefers-reduced-motion:reduce){.reference-hero .hero-codex-object{animation:none}}

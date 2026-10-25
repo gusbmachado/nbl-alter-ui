@@ -1,4 +1,4 @@
-# Nossa Biblioteca Livre
+# Nossa Bíblia Livre
 
 Uma proposta de biblioteca digital para ler a tradução de Osvaldo Luiz Ribeiro como um livro: escolher um tomo na estante, virar suas páginas e consultar as notas.
 

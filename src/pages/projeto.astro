@@ -8,5 +8,129 @@ import '../styles/presentation.css';
     <div><h1>Sobre o projeto</h1><ProjectManifesto /><div class="actions"><a class="button" href="/biblioteca/">Explorar biblioteca</a><a class="button secondary" href="https://nossabiblialivre.com/">Apresentação oficial ↗</a></div></div>
     <img class="presentation-logo" src="/img/logo.png" alt="Nossa Bíblia Livre" width="1536" height="1024" />
   </section>
-  <p class="caption">Texto institucional reproduzido da contracapa fornecida. Esta interface é um protótipo independente.</p>
+  <section class="sec2" id="sobre-projeto">
+    <h2>Sobre o projeto</h2>
+    <div class="tres">
+      <article><h3>Que projeto?</h3><p>Uma Bíblia sem vínculos com mercado, doutrina, teologia, ideologia, tradição, religião ou instituição: só o texto bíblico, nada além dele.</p></article>
+      <article><h3>Que Bíblia?</h3><p>A mesma Bíblia que as igrejas leem, traduzida de forma literal e direta do hebraico, do aramaico e do grego, sem as amarras institucionais e comerciais das versões correntes.</p></article>
+      <article><h3>Que tradução?</h3><p>Feita inteira e exclusivamente por Osvaldo Luiz Ribeiro, que foi cristão batista por duas décadas e hoje não professa mais a fé. Ensinou Bíblia de 1993 a 2023.</p></article>
+    </div>
+    <p class="centro"><a class="btn sec" href="https://nossabiblialivre.com/sobre-o-projeto" target="_blank" rel="noopener">Saiba mais sobre o projeto</a></p>
+  </section>
+  <section class="sec2">
+      <h2>O que move a tradução</h2>
+      <div class="manifesto">
+        <article><span class="rom">I</span><h3>Biblioteca, não livro único</h3><p>A Bíblia reúne muitos livros, de autores e épocas diferentes, cada um com a sua intenção. O projeto quer devolver a voz de cada autor, em vez de fundi-las numa só voz doutrinária.</p></article>
+        <article><span class="rom">II</span><h3>Pesquisa, não catequese</h3><p>O alvo é estudo e compreensão: entender com exatidão o que cada autor escreveu, sem recorrer ao que líderes ou instituições religiosas dizem sobre o texto.</p></article>
+        <article><span class="rom">III</span><h3>Eu traduzo, você apoia, todo mundo lê</h3><p>Traduzir a Bíblia sozinho não cabe junto com outro emprego. Desde 01/07/2023 o tradutor se dedica ao projeto, que se sustenta com apoiadores na plataforma Apoia.se.</p></article>
+        <article><span class="rom">IV</span><h3>O que é traduzir?</h3><p>O texto deve ser fiel ao autor, não ao leitor nem a interesses externos. O tradutor promete buscar, a cada palavra, o sentido que ela tinha para quem a escreveu.</p></article>
+      </div>
+      <p class="centro"><a class="btn" href="https://apoia.se/nossabiblialivre" target="_blank" rel="noopener">Apoie esse projeto</a></p>
+    </section>
+    <style>
+      .sec2 {
+        border-top: 1px solid rgba(207, 169, 90, 0.28);
+        padding: 44px 0;
+      }
+
+      .sec2 > h2 {
+        font-family: 'Cinzel', Georgia, serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 22px;
+        text-align: center;
+      }
+
+      .tres {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(min(250px, 100%), 1fr)
+        );
+        gap: 28px;
+      }
+
+      .tres h3 {
+        font-family: 'Meddon', Georgia, serif;
+        font-size: 1.3rem;
+        color: #cfa95a;
+        margin-bottom: 6px;
+      }
+
+      .tres p {
+        margin: 0;
+        line-height: 1.75;
+      }
+
+      .centro {
+        text-align: center;
+        margin-top: 32px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        text-decoration: none;
+        background: #cfa95a;
+        color: #2a190c;
+        border-radius: 4px;
+      }
+
+      /* Estrutura geral da seção */
+      .sec2 {
+        border-top: 1px solid rgba(207,169,90,.28);
+        padding: 44px 0;
+      }
+
+      .sec2 > h2 {
+        font-size: 1.6rem;
+        margin-bottom: 22px;
+        text-align: center;
+      }
+
+      /* Grade do manifesto */
+      .manifesto {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px,1fr)
+        );
+        gap: 32px 44px;
+      }
+
+      /* Divisória superior de cada artigo */
+      .manifesto article {
+        border-top: 1px solid rgba(207,169,90,.45);
+        padding-top: 14px;
+      }
+
+      /* Numeração romana */
+      .rom {
+        font-family: 'Cinzel',Georgia,serif;
+        color: rgba(234,217,176,.65);
+        letter-spacing: .2em;
+        font-size: .78rem;
+      }
+
+      /* Títulos */
+      .tres h3,
+      .manifesto h3 {
+        font-family: 'Meddon',Georgia,serif;
+        font-size: 1.3rem;
+        color: var(--gold);
+        margin-bottom: 6px;
+      }
+
+      /* Parágrafos */
+      .tres p,
+      .manifesto p {
+        margin: 0;
+      }
+
+      /* Botão inferior */
+      .centro {
+        text-align: center;
+        margin-top: 26px;
+      }
+    </style>
 </Layout>

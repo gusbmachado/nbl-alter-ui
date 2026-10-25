@@ -8,6 +8,4 @@ import '../styles/presentation.css';
   <section id="trajetoria" class="biography-timeline" aria-labelledby="timeline-title"><p class="eyebrow">UMA TRAJETÓRIA EM PERSPECTIVA</p><h2 id="timeline-title">Formação e tradução</h2><p>Selecione um marco para conhecer seus detalhes.</p>
     {milestones.map((item, i) => <details class="milestone" open={i === 0}><summary><span class="milestone-year">{item.year}</span><span>{item.title}</span><span class="milestone-toggle" aria-hidden="true">+</span></summary><div class="milestone-body"><div><h3>{item.institution}</h3><p>{item.text}</p></div>{item.image ? <div class="milestone-art" data-image={item.image.split('/').pop()}><img src={item.image} alt={item.alt} loading="lazy" /></div> : <div class="institution-space"><span>{item.institution}</span><small>Espaço para imagem ou logo</small></div>}</div></details>)}
   </section>
-  <p class="caption">Marcos biográficos e datas: <a href="https://nossabiblialivre.com/">apresentação oficial da Nossa Bíblia Livre</a>, consultada em 22/10/2026. Imagens fornecidas para esta apresentação.</p>
-  <div class="actions"><a class="button" href="/ler/genesis/">Conheça a tradução</a><a class="button secondary" href="/projeto/">Sobre o projeto</a></div>
 </Layout>

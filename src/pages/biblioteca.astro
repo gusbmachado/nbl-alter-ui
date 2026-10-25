@@ -31,7 +31,9 @@ const { catalog } = compile();
   <p class="notice">Os títulos fazem parte do catálogo planejado. Gênesis 1–3 contém a amostra real fornecida pelo responsável. Salmos contém somente um texto fictício para testes. Os números não representam o andamento do projeto oficial.</p>
 </Layout>
 <script>
+  document.addEventListener('astro:page-load', () => {
   const library = document.querySelector<HTMLElement>('#library')!;
+  if (!library) return;
   const shelf = document.querySelector<HTMLButtonElement>('#shelf-view')!;
   const catalog = document.querySelector<HTMLButtonElement>('#catalog-view')!;
   function mode(value: boolean) {
@@ -58,4 +60,5 @@ const { catalog } = compile();
   }
   document.querySelector('#book-search')!.addEventListener('input', filter);
   document.querySelector('#only-available')!.addEventListener('change', filter);
+  });
 </script>
